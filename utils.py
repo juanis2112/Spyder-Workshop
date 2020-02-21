@@ -21,3 +21,20 @@ def plot_correlations(df, size=10):
     ax.matshow(corr)
     plt.xticks(range(len(corr.columns)), corr.columns)
     plt.yticks(range(len(corr.columns)), corr.columns)
+
+
+def aggregate_by_year(df, date_column, figsize=(15, 8)):
+    """
+    Return a DataFrame aggregate by year and plot it.
+
+    Input:
+        df: pandas DataFrame
+        date_column: label of the column with date values
+    Return:
+        df_yearly: DataFrame grouped by month
+    """
+    df['year'] = df[date_column].apply(lambda x: x.year)
+    df_yearly = df.groupby('year').mean()
+    df_yearly .plot(subplots=True, figsize=figsize)
+
+    return df_yearly

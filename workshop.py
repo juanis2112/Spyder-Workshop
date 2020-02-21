@@ -12,7 +12,7 @@ import matplotlib  # Needed for the use of pandas DataFrame.plot
 import pandas as pd
 
 # Local imports
-from utils import plot_correlations
+from utils import plot_correlations, aggregate_by_year
 
 # In[2] Exploring Data
 
@@ -55,7 +55,19 @@ weather_data_ordered.plot(
 # In[4] Correlations
 plot_correlations(weather_data_ordered, size=15)
 
+weather_correlations = weather_data_ordered.corr()
 weather_corr_temp_humidity = weather_data_ordered['Temperature (C)'].corr(
     weather_data_ordered['Humidity'])
 
-# TODO: Get the correlation between
+# TODO: Get the correlation for different combinations of variables.
+#       Contrast them with the weather_correlations dataframe
+
+
+# In[5] Data summarization and aggregation
+
+# Weather data by year
+weather_data_by_year = aggregate_by_year(
+    weather_data_ordered, 'Formatted Date')
+
+# TODO: Create and use a function to get the average
+#       of the weather data by month
