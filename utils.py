@@ -38,3 +38,12 @@ def aggregate_by_year(df, date_column, figsize=(15, 8)):
     df_yearly .plot(subplots=True, figsize=figsize)
 
     return df_yearly
+
+
+def predicted_temperature(humidity, beta_0, beta_1):
+    """
+    Return a predicted temperature based on the humidity.
+
+    Uses a linear regression as model: temperature = beta_0 + beta_1 * humidity
+    """
+    return beta_0 + beta_1 * humidity

@@ -8,11 +8,13 @@
 # In[1] Importing Libraries and Data
 
 # Third-party imports
-import matplotlib  # Needed for the use of pandas DataFrame.plot
+import matplotlib.pyplot as plt
 import pandas as pd
+from sklearn.model_selection import train_test_split
+from sklearn import linear_model
 
 # Local imports
-from utils import plot_correlations, aggregate_by_year
+from utils import plot_correlations, aggregate_by_year, predicted_temperature
 
 # In[2] Exploring Data
 
@@ -71,3 +73,31 @@ weather_data_by_year = aggregate_by_year(
 
 # TODO: Create and use a function to get the average
 #       of the weather data by month
+
+
+# In[6] Lineal regression
+
+# Get data subsets for the model
+X_train, X_test, Y_train, Y_test = train_test_split(
+    weather_data_ordered['Humidity'], weather_data_ordered['Temperature (C)'],
+    test_size=0.25)
+
+# Run regression
+regresion = linear_model.LinearRegression()
+regresion.fit(X_train.values.reshape(-1, 1), Y_train.values.reshape(-1, 1))
+print(regresion.intercept_, regresion.coef_)  # beta_0=intercept, beta_1=coef_
+
+# Get coefficients
+beta_0 = regresion.intercept_[0]
+beta_1 = regresion.coef_[0, 0]
+
+Y_predict = predicted_temperature(X_test, beta_0, beta_1)
+plt.scatter(X_test, Y_test, c='red', label='observation', s=1)
+plt.scatter(X_test, Y_predict, c='blue', label='model')
+plt.xlabel('Humidity')
+plt.ylabel('Temperature (C)')
+plt.legend()
+
+# TODO: Using the coefficients predict the temperature for a
+#       given level of humidity using the 'predicted_temperature' function
+#       available in 'utils'
