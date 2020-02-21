@@ -14,7 +14,7 @@ from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 
 # Local imports
-from utils import plot_correlations, aggregate_by_year
+from utils import plot_correlations, aggregate_by_year, predicted_temperature
 
 # In[2] Exploring Data
 
@@ -91,9 +91,13 @@ print(regresion.intercept_, regresion.coef_)  # beta_0=intercept, beta_1=coef_
 beta_0 = regresion.intercept_[0]
 beta_1 = regresion.coef_[0, 0]
 
-Y_predict = beta_0 + beta_1 * X_test
+Y_predict = predicted_temperature(X_test, beta_0, beta_1)
 plt.scatter(X_test, Y_test, c='red', label='observation', s=1)
 plt.scatter(X_test, Y_predict, c='blue', label='model')
 plt.xlabel('Humidity')
 plt.ylabel('Temperature (C)')
 plt.legend()
+
+# TODO: Using the coefficients predict the temperature for a
+#       given level of humidity using the 'predicted_temperature' function
+#       available in 'utils'
