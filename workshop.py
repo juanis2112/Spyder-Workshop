@@ -14,7 +14,9 @@ from sklearn.model_selection import train_test_split
 from sklearn import linear_model
 
 # Local imports
-from utils import plot_correlations, aggregate_by_year, predicted_temperature
+from utils import (
+    plot_correlations, plot_color_gradients, aggregate_by_year,
+    predicted_temperature)
 
 # In[2] Exploring Data
 
@@ -56,6 +58,8 @@ weather_data_ordered.plot(
 
 # In[4] Correlations
 plot_correlations(weather_data_ordered, size=15)
+cmap_category, cmap_list = ('Plot gradiends convention', ['viridis', ])
+plot_color_gradients(cmap_category, cmap_list)
 
 weather_correlations = weather_data_ordered.corr()
 weather_corr_temp_humidity = weather_data_ordered['Temperature (C)'].corr(
@@ -97,6 +101,7 @@ plt.scatter(X_test, Y_predict, c='blue', label='model')
 plt.xlabel('Humidity')
 plt.ylabel('Temperature (C)')
 plt.legend()
+plt.show()
 
 # TODO: Using the coefficients predict the temperature for a
 #       given level of humidity using the 'predicted_temperature' function
