@@ -1,6 +1,9 @@
 
 # Spyder-Workshop
-Spyder Workshop 
+The main goal of this workshop is to explorer some of Spyder's main functionalities for scientific programming. During this workshop we will work on data visualisation, analysis and prediction using Python libraries like Pandas, Matplotlib and Scikit-learn over a data set containing information about the weather history from 2006 to 2016.
+
+## Project Set-Up
+0. Clone https://github.com/juanis2112/Spyder-Workshop repository and in Spyder open this folder as a project under the 'Project' menu in the top toolbar. Then, open the file 'workshop.py' using the outline pane. 
 
 ## Importing Libraries and Data
 The first thing we need to do before starting our work, is importing the libraries necessary for our analysis and saving the data in a way that is easy to explore.
@@ -98,13 +101,11 @@ Note that this means our model is a linear function `$$y = beta_0 + beta_1 \time
 `plt.ylabel('Temperature (C)')`
 `plt.legend()`
 `plt.show()`
-
 31. Using the coefficients found in our model, predict the temperature for a given level of humidity using the `predicted_temperature` function available in 'utils'.
 
 Finally, we can numerically evaluate how good was our model predicted. For this we will use the `explained_variance_score`metric available in sklearn.metrics. This metric is calculated as 1-(Var(Y_real-Y_model)/Var(Y_real)) which means that the closer the value is to 1, the better our model. 
 
 32. Use the following command `from sklearn.metrics import explained_variance_score`to import the function that evaluates how good is our model.
-
 33. Calculate the explained variance score and print it using the following `ev = explained_variance_score(Y_test, Y_predict)`
 `print(ev)`.
 
