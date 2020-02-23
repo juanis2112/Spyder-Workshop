@@ -24,12 +24,8 @@ weather_data = pd.read_csv('data/weatherHistory.csv')
 print(len(weather_data))
 print(weather_data.head(3))
 
-# Drop categorical columns
-weather_data = weather_data.drop(
-    columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
-
-
-# TODO: Print the last 3 rows of the DataFrame
+# TO DO: Print the last 3 rows of the DataFrame
+print(weather_data.tail(3))
 
 
 # In[3] Visualisation
@@ -39,47 +35,49 @@ weather_data['Formatted Date'] = pd.to_datetime(
 weather_data_ordered = weather_data.sort_values(by='Formatted Date')
 
 weather_data_ordered = weather_data_ordered.reset_index(drop=True)
+# Drop categorical columns
+weather_data_ordered = weather_data_ordered.drop(
+    columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
+
 weather_data_ordered.plot(
     x='Formatted Date', y=['Temperature (C)'], color='red', figsize=(15, 8))
 
-# TODO: Plot Temperature (C) V.S the Date using only the data from 2006
-
+# TO DO: Plot Temperature (C) V.S the Date using only the data from 2006
+weather_data_ordered.head(8759).plot(x='Formatted Date', y=['Temperature (C)'], color='red')
 
 # -----------------------------------------------------------------------------
 weather_data_ordered.plot(
     subplots=True, x='Formatted Date', y=['Temperature (C)', 'Humidity'],
     figsize=(15, 8))
-
-# TODO: Plot different combinations of the variables, for different years
+# TO DO: Plot different combinations of the variables, for different years
 
 
 # -----------------------------------------------------------------------------
 
-
-# In[4] Correlations
-plot_correlations(weather_data_ordered, size=15)
-cmap_category, cmap_list = ('Plot gradiends convention', ['viridis', ])
-plot_color_gradients(cmap_category, cmap_list)
-
-weather_correlations = weather_data_ordered.corr()
-weather_corr_temp_humidity = weather_data_ordered['Temperature (C)'].corr(
-    weather_data_ordered['Humidity'])
-
-# TODO: Get the correlation for different combinations of variables.
-#       Contrast them with the weather_correlations dataframe
-
-
-# In[5] Data summarization and aggregation
+# In[4] Data summarization and aggregation
 
 # Weather data by year
 weather_data_by_year = aggregate_by_year(
     weather_data_ordered, 'Formatted Date')
 
-# TODO: Create and use a function to get the average
+# TO DO: Create and use a function to get the average
 #       of the weather data by month
 
 
-# In[6] Lineal regression
+# In[5] Data Analysis and Interpretation
+plot_correlations(weather_data_ordered, size=15)
+cmap_category, cmap_list = ('Plot gradiends convention', ['viridis', ])
+plot_color_gradients(cmap_category, cmap_list)
+
+weather_correlations = weather_data_ordered.corr()
+weather_data_ordered['Temperature (C)'].corr(
+    weather_data_ordered['Humidity'])
+
+# TO DO: Get the correlation for different combinations of variables.
+#       Contrast them with the weather_correlations dataframe
+
+
+# In[6] Data Modeling and Prediction
 
 # Get data subsets for the model
 X_train, X_test, Y_train, Y_test = train_test_split(
@@ -103,6 +101,6 @@ plt.ylabel('Temperature (C)')
 plt.legend()
 plt.show()
 
-# TODO: Using the coefficients predict the temperature for a
+# TO DO: Using the coefficients predict the temperature for a
 #       given level of humidity using the 'predicted_temperature' function
 #       available in 'utils'

@@ -41,7 +41,6 @@ def aggregate_by_year(df, date_column, figsize=(15, 8)):
 
     return df_yearly
 
-
 def predicted_temperature(humidity, beta_0, beta_1):
     """
     Return a predicted temperature based on the humidity.
