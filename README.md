@@ -9,7 +9,8 @@ The first thing we need to do before starting our work, is importing the librari
 `weather_data = pd.read_csv('data/weatherHistory.csv')`.
 
 ## Exploring Data
-Now that we have our data and our libraries ready, let's start by taking a look at the data than we have.
+Now that we have our data and our libraries ready, let's start by taking a look at the data that we have.
+
 3. Open the weather_data variable in the Variable Explorer. 
 4. Verify that the size of the data displayed in the Variable Explorer, corresponds to the result of the following command
 `len(weather_data)`
@@ -18,7 +19,7 @@ Now that we have our data and our libraries ready, let's start by taking a look 
 6. Now try printing the last 3 rows of the DataFrame.
 
 ## Visualisation
-A useful tool for exploring data that we are going to work on is plotting it. This is easy to do, using our pandas library which we imported previously. 
+A useful tool for exploring the data that we are going to work with, is plotting it. This is easy to do, using our pandas library which we imported previously. 
 The first thing we want to do before plotting our data is ordering the rows according to the date. Use the Variable Explorer to verify that our data is not ordered by default.
 
 7. Use the following commands to create a new variable with our data ordered.
@@ -57,7 +58,7 @@ Now, we want to evaluate the relationships between the variables in our data set
 18. Open the plots pane to visualize the correlations plot.
 19. Import the function `plot_color_gradients` which is also in the utils.py file which will help you plot the colormap gradient to be able to interpret your correlations plot.
 20. Plot the colormap gradient using the following commands. 
-`cmap_category, cmap_list = ('Plot gradiends convention', ['viridis', ])`
+`cmap_category, cmap_list = ('Plot gradients convention', ['viridis', ])`
 `plot_color_gradients(cmap_category, cmap_list)`
 21. Calculate the correlations between the different variables in our data set usgin the following command `weather_correlations = weather_data_ordered.corr()`.
 22. Open the variable `weather_correlations`in the Variable Explorer. 
@@ -65,7 +66,7 @@ Now, we want to evaluate the relationships between the variables in our data set
     weather_data_ordered['Humidity'])`in the console to get the correlation between the Humidity and Temperature. Verify it has the same value in the correlations DataFrame.
 24. Try calculating correlations between different variables and comparing them with the ones in the data frame.
 
-## Data Dodeling and Prediction
+## Data Modeling and Prediction
 Finally, we want to use our data to construct a model that allows us predicting values for some of our variables. In our previous section we realized that humidity and temperature are two of the most correlated variables so we are going to use these two first. 
 
 We are going to use scikit-learn which is a python library that contains tools to explore data and build different types of predictive models. We will use two functions for this task which need to be imported.
@@ -100,8 +101,12 @@ Note that this means our model is a linear function `$$y = beta_0 + beta_1 \time
 
 31. Using the coefficients found in our model, predict the temperature for a given level of humidity using the `predicted_temperature` function available in 'utils'.
 
+Finally, we can numerically evaluate how good was our model predicted. For this we will use the `explained_variance_score`metric available in sklearn.metrics. This metric is calculated as 1-(Var(Y_real-Y_model)/Var(Y_real)) which means that the closer the value is to 1, the better our model. 
 
+32. Use the following command `from sklearn.metrics import explained_variance_score`to import the function that evaluates how good is our model.
 
+33. Calculate the explained variance score and print it using the following `ev = explained_variance_score(Y_test, Y_predict)`
+`print(ev)`.
 
 
 
