@@ -1,6 +1,6 @@
 
 # Spyder-Workshop
-The main goal of this workshop is to explorer some of Spyder's main functionalities for scientific programming. During this workshop we will work on data visualisation, analysis and prediction using Python libraries like Pandas, Matplotlib and Scikit-learn over a data set containing information about the weather history from 2006 to 2016.
+The main goal of this workshop is to explore some of Spyder's main functionalities for scientific programming. During this workshop we will work on data visualisation, analysis and prediction using Python libraries like Pandas, Matplotlib and Scikit-learn over a data set containing information about the weather history from 2006 to 2016.
 
 ## Project Set-Up
 0. Clone https://github.com/juanis2112/Spyder-Workshop repository and in Spyder open this folder as a project under the 'Project' menu in the top toolbar. Then, open the file 'workshop.py' using the outline pane. 
