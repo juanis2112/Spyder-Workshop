@@ -1,10 +1,10 @@
 
 # Spyder-Workshop
 
-usuario: eventopuj
+usuario: aherrera
 
 
-contraseña: 3v3nt0sf32020
+contraseña: Elena1563
 
 The main goal of this workshop is to explore some of Spyder's main functionalities for scientific programming. During this workshop we will work on data visualisation, analysis and prediction using Python libraries like Pandas, Matplotlib and Scikit-learn over a data set containing information about the weather history from 2006 to 2016.
 
