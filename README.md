@@ -230,7 +230,7 @@ from sklearn.metrics import explained_variance_score
 
 to import the function that evaluates how good is our model.
 
-303. Calculate the explained variance score and print it using the following 
+33. Calculate the explained variance score and print it using the following 
 
 ```python
 ev = explained_variance_score(Y_test, Y_predict)
