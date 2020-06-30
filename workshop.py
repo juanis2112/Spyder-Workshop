@@ -5,63 +5,61 @@
 """Workshop main flow."""
 
 
-# In[1] Importing Libraries and Data
+# In[1] Import Packages and Data
 
 # Third-party imports
 
 # Local imports
 
 
-# In[2] Exploring Data
+# In[2] Explore the Data
 
-# Reading data
+# Read data
 
-# Print size of data 
+# Print length of data
 
-# Print first 3 rows of DataFrame
+# Print first three rows of DataFrame
 
-# TO DO: Print the last 3 rows of the DataFrame
+# TODO: Print last three rows of DataFrame
 
 
-
-# In[3] Visualisation
+# In[3] Visualization
 
 # Order rows according to date
 
-# Order Index according to date
+# Reset index to restore its order
 
 # Drop categorical columns
 
-# Plot Temperature Vs Formatted Date
+# Plot temperature vs. date
 
-# TO DO: Plot Temperature (C) V.S the Date using only the data from 2006
+# TODO: Plot temperature vs date using only the data from 2006
+
 
 # -----------------------------------------------------------------------------
 
-# Plot Temperature and Humidity in the same plot
+# Plot temperature and humidity in the same plot
 
-# TO DO: Plot different combinations of the variables, for different years
-
+# TODO: Plot different combinations of the variables, and for different years
 
 
 # In[4] Data summarization and aggregation
 
 # Weather data by year
 
-# TO DO: Create and use a function to get the average
-#       of the weather data by month
+# TODO: Create and use a function to average the weather data by month
 
 
 # In[5] Data Analysis and Interpretation
 
-# Plot Correlations
+# Plot correlations
 
-# Plot Gradients colormaps
+# Plot gradient colormaps
 
-# Compute Correlations 
+# Compute correlations
 
-# TO DO: Get the correlation for different combinations of variables.
-#       Contrast them with the weather_correlations dataframe
+# TODO: Get the correlation for different combinations of variables.
+#       Contrast them with the weather_correlations dataframe.
 
 
 # In[6] Data Modeling and Prediction
@@ -72,11 +70,13 @@
 
 # Get coefficients
 
+
+# In[7] Predictive Model Testing and Evaluation
+
 # Plot predicted model with test data.
 
-# TO DO: Using the coefficients predict the temperature for a
+# TODO: Using the coefficients, predict the temperature for a
 #       given level of humidity using the 'predicted_temperature' function
-#       available in 'utils'
+#       available in utils.
 
 # Evaluate model numerically
-
