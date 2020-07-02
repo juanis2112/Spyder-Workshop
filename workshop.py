@@ -22,6 +22,7 @@
 
 # TODO: Print last three rows of DataFrame
 
+
 # %% [3] Visualization
 
 # Order rows according to date
@@ -71,7 +72,7 @@
 
 # %% [7] Predictive Model Testing and Evaluation
 
-# Plot predicted model with test data.
+# Plot predicted model with test data
 
 # TODO: Using the model, predict the temperature for a given level of humidity
 
