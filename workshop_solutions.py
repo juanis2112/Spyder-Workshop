@@ -1,6 +1,8 @@
 # -*- coding: utf-8 -*-
 """Workshop main flow."""
 
+# pylint: disable=invalid-name, fixme
+
 
 # %% [1] Import Packages and Data
 
@@ -49,7 +51,8 @@ weather_data_ordered.plot(
     x='date', y='temperature_c', color='red', figsize=(15, 8))
 
 # TODO: Plot temperature vs date using only the data from 2006
-weather_data_ordered.head(8759).plot(x='date', y=['temperature_c'], color='red')
+weather_data_ordered.loc[weather_data_ordered["date"].dt.year == 2006, :].plot(
+    x='date', y='temperature_c', color='red')
 
 # Plot temperature and humidity in the same plot
 weather_data_ordered.plot(
