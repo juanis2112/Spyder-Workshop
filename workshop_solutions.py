@@ -33,28 +33,27 @@ print(weather_data.tail(3))
 # %% [3] Visualization
 
 # Order rows according to date
-weather_data['Formatted Date'] = pd.to_datetime(
-    weather_data['Formatted Date'], format='%Y-%m-%d %H:%M:%S.%f %z')
-weather_data_ordered = weather_data.sort_values(by='Formatted Date')
+weather_data['date'] = pd.to_datetime(weather_data['date'])
+weather_data_ordered = weather_data.sort_values(by='date')
 
 # Reset index to restore its order
 weather_data_ordered.reset_index(drop=True, inplace=True)
 
 # Drop categorical columns
 weather_data_ordered.drop(
-    columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'],
+    columns=['summary', 'precip_type', 'cloud_cover', 'daily_summary'],
     inplace=True)
 
 # Plot temperature vs. date
 weather_data_ordered.plot(
-    x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
+    x='date', y='temperature_c', color='red', figsize=(15, 8))
 
 # TODO: Plot temperature vs date using only the data from 2006
-weather_data_ordered.head(8759).plot(x='Formatted Date', y=['Temperature (C)'], color='red')
+weather_data_ordered.head(8759).plot(x='date', y=['temperature_c'], color='red')
 
 # Plot temperature and humidity in the same plot
 weather_data_ordered.plot(
-    subplots=True, x='Formatted Date', y=['Temperature (C)', 'Humidity'],
+    subplots=True, x='date', y=['temperature_c', 'humidity'],
     figsize=(15, 8))
 
 # TODO: Plot different combinations of the variables, and for different years
@@ -64,7 +63,7 @@ weather_data_ordered.plot(
 
 # Weather data by year
 weather_data_by_year = aggregate_by_year(
-    weather_data_ordered, 'Formatted Date')
+    weather_data_ordered, 'date')
 
 # TODO: Create and use a function to average the weather data by month
 
@@ -80,8 +79,8 @@ plot_color_gradients(
 
 # Compute correlations
 weather_correlations = weather_data_ordered.corr()
-weather_data_ordered['Temperature (C)'].corr(
-    weather_data_ordered['Humidity'])
+weather_data_ordered['temperature_c'].corr(
+    weather_data_ordered['humidity'])
 
 # TO DO: Get the correlation for different combinations of variables.
 #       Contrast them with the weather_correlations dataframe
@@ -91,7 +90,7 @@ weather_data_ordered['Temperature (C)'].corr(
 
 # Get data subsets for the model
 x_train, x_test, y_train, y_test = train_test_split(
-    weather_data_ordered['Humidity'], weather_data_ordered['Temperature (C)'],
+    weather_data_ordered['humidity'], weather_data_ordered['temperature_c'],
     test_size=0.25)
 
 # Run regression
@@ -108,8 +107,8 @@ print(regression.intercept_, regression.coef_)  # beta_0, beta_1
 y_predict = regression.predict(x_test.values.reshape(-1, 1))
 plt.scatter(x_test, y_test, c='red', label='Observation', s=1)
 plt.scatter(x_test, y_predict, c='blue', label='Model')
-plt.xlabel('Humidity')
-plt.ylabel('Temperature (C)')
+plt.xlabel('humidity')
+plt.ylabel('temperature_c')
 plt.legend()
 plt.show()
 
