@@ -76,9 +76,8 @@ Use the Variable Explorer to verify that our data is not ordered by default.
 7. First, parse the date and create a new DataFrame with our data ordered by it:
 
 ```python
-weather_data['Formatted Date'] = pd.to_datetime(
-    weather_data['Formatted Date'], format='%Y-%m-%s %H:%M:%S %z')
-weather_data_ordered = weather_data.sort_values(by='Formatted Date')
+weather_data['date'] = pd.to_datetime(weather_data['date'])
+weather_data_ordered = weather_data.sort_values(by='date')
 ```
 
 8. In the Variable Explorer, right-click the old DataFrame `weather_data` to view the context menu and select `Remove` to delete this object.
@@ -96,26 +95,26 @@ For this reason, we want to filter out these columns, and stick to the ones that
 
 ```python
 weather_data_ordered.drop(
-    columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'],
+    columns=['summary', 'precip_type', 'cloud_cover', 'daily_summary'],
     inplace=True)
 ```
 
-9. Plot the `Temperature (C)` column versus the `Date` column to see how temperature changes over time:
+9. Plot the `temperature_c` column versus the `date` column to see how temperature changes over time:
 
 ```python
 weather_data_ordered.plot(
-    x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
+    x='date', y='temperature_c', color='red', figsize=(15, 8))
 ```
 
 10. Switch to Spyder's Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
 
 11. Now, try plotting the same columns using only the data from 2006.
 
-12. Plot both the `Temperature (C)` and `Humidity` columns versus the `Date` column to examine how both variables change over the years:
+12. Plot both the `temperature_c` and `humidity` columns versus the `date` column to examine how both variables change over the years:
 
 ```python
 weather_data_ordered.plot(
-    subplots=True, x='Formatted Date', y=['Temperature (C)', 'Humidity'],
+    subplots=True, x='date', y=['temperature_c', 'humidity'],
     figsize=(15, 8))
 ```
 
@@ -139,7 +138,7 @@ from utils import aggregate_by_year
 
 ```python
 weather_data_by_year = aggregate_by_year(
-    weather_data_ordered, 'Formatted Date')
+    weather_data_ordered, 'date')
 ```
 
 16. Try writing your own function that averages the weather data by month and plots it.
@@ -188,7 +187,7 @@ weather_correlations = weather_data_ordered.corr()
 23. You can also get just the correlation between two particular variables, such as temperature and humidity:
 
 ```python
-weather_data_ordered['Temperature (C)'].corr(weather_data_ordered['Humidity'])
+weather_data_ordered['temperature_c'].corr(weather_data_ordered['humidity'])
 ```
 
 Verify it has the same value as in the `weather_correlations` DataFrame.
@@ -216,7 +215,7 @@ Scikit-Learn contains a built-in function to split your data:
 
 ```python
 x_train, x_test, y_train, y_test = train_test_split(
-    weather_data_ordered['Humidity'], weather_data_ordered['Temperature (C)'],
+    weather_data_ordered['humidity'], weather_data_ordered['temperature_c'],
     test_size=0.25)
 ```
 
@@ -228,7 +227,7 @@ regression = linear_model.LinearRegression()
 regression.fit(x_train.values.reshape(-1, 1), y_train.values.reshape(-1, 1))
 ```
 
-28. To get the function's documentation in Spyder's Help Pane, place the text cursor over `LinearRegression()` and press the `Inspect` shortcut (`Ctrl+I` by default on Windows/Linux, or `Cmd-I` on macOS) .
+28. To get the function's documentation in Spyder's Help Pane, place the text cursor over `LinearRegression()` and press the `Inspect` shortcut (`Ctrl+I` by default on Windows/Linux, or `Cmd-I` on macOS).
 
 29. Finally, print the coefficients of our regression:
 
@@ -245,10 +244,10 @@ Note that this means our model is a linear function `$$y = beta_0 + beta_1 \time
 
 ```python
 y_predict = regression.predict(x_test.values.reshape(-1, 1))
-plt.scatter(x_test, y_test, c='red', label='observation', s=1)
+plt.scatter(x_test, y_test, c='red', label='Observation', s=1)
 plt.scatter(x_test, y_predict, c='blue', label='model')
-plt.xlabel('Humidity')
-plt.ylabel('Temperature (C)')
+plt.xlabel('humidity')
+plt.ylabel('temperature_c')
 plt.legend()
 plt.show()
 ```

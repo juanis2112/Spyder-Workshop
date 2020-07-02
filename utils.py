@@ -35,7 +35,7 @@ def plot_correlations(df, size=10):
     return fig, ax
 
 
-def aggregate_by_year(df, date_column, figsize=(15, 8)):
+def aggregate_by_year(df, date_column="date", figsize=(15, 8)):
     """
     Aggregate a DataFrame by year and plot it.
 
@@ -43,8 +43,9 @@ def aggregate_by_year(df, date_column, figsize=(15, 8)):
     ----------
     df : pandas.DataFrame
         DataFrame to aggregate by year and plot.
-    date_column : str
+    date_column : str, optional
         Label of the column containing the date values, as pd.Timestamps.
+        The default is "date".
     figsize : Tuple of (int, int), optional
         Tuple with the size of the figure to generate in (width, height).
         The default is (15, 8).
@@ -55,7 +56,7 @@ def aggregate_by_year(df, date_column, figsize=(15, 8)):
         Grouped dataframe by year.
 
     """
-    df['year'] = df[date_column].apply(lambda x: x.year)
+    df['year'] = df[date_column].dt.year
     df_yearly = df.groupby('year').mean()
     df_yearly.plot(subplots=True, figsize=figsize)
     return df_yearly
