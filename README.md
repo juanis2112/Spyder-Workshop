@@ -1,7 +1,7 @@
 # Spyder Workshop
 
-The main goal of this workshop is to explore some of the Spyder scientific Python environment's core functionality for scientific programming.
-We will work on data visualization, analysis and prediction using packages like Pandas, Matplotlib and Scikit-learn over a dataset of historical weather observations from 2006 to 2016.
+The main goal of this workshop is to explore some of the Spyder IDE's core functionality for scientific programming.
+We will work on data visualization, analysis and prediction using Python packages like Pandas, Matplotlib and Scikit-learn over a dataset of historical weather observations from 2006 to 2016.
 
 
 ## Prerequisites
@@ -27,9 +27,9 @@ Finally, open the file `workshop.py` by double-clicking it in the `Project Explo
 
 ## Import Packages and Data
 
-The first thing we need to do before starting our work is import the packages necessary for our analysis and load the data in a way that is easy to explore.
+The first thing we need to do before starting our work is import the packages necessary for our analysis, and load the data in a way that it is easy to explore.
 
-1. Import the packages matplotlib and pandas:
+1. Import the packages Matplotlib and Pandas:
 
 ```python
 import matplotlib.pyplot as plt
@@ -70,7 +70,7 @@ print(weather_data.head(3))
 A useful tool for exploring the data that we are going to work with is plotting it.
 This is easy to do using the pandas library, which we imported previously.
 
-The first thing we want to do before plotting our data is ordering the rows by date.
+The first thing we want to do before plotting our data is ordering the rows according to the date.
 Use the Variable Explorer to verify that our data is not ordered by default.
 
 7. Parse the date and create a new DataFrame with our data ordered by it:
@@ -80,10 +80,10 @@ weather_data['date'] = pd.to_datetime(weather_data['date'])
 weather_data_ordered = weather_data.sort_values(by='date')
 ```
 
-8. In the Variable Explorer, right-click the old DataFrame `weather_data` to pop out the context menu and select `Remove` to delete this variable.
+8. In the Variable Explorer, right-click the old DataFrame `weather_data` to pop out the context menu and select `Remove` to delete it.
 Now, we are going to work with our new variable `weather_data_ordered`.
 
-Notice in the Variable Explorer that the DataFrame's index (the `Index` column on the left) is now out of order.
+Notice in the Variable Explorer that the DataFrame's index (the `Index` column on the left) is not in the order of the date.
 Reset the index so its order matches that of `date`:
 
 ```python
@@ -91,7 +91,7 @@ weather_data_ordered.reset_index(drop=True, inplace=True)
 ```
 
 We also see that there are some qualitative variables, which can make our analysis more difficult.
-For this reason, we want to stick to the columns that give us numerical information and drop the rest:
+For this reason, we want to stick to the columns that give us numerical information and drop the categorical ones:
 
 ```python
 weather_data_ordered.drop(
@@ -99,18 +99,18 @@ weather_data_ordered.drop(
     inplace=True)
 ```
 
-9. Plot the data of the `temperature_c` column versus the `date` column to see how temperature changes over time:
+9. Plot the temperature versus the date to see how temperature changes over time:
 
 ```python
 weather_data_ordered.plot(
     x='date', y='temperature_c', color='red', figsize=(15, 8))
 ```
 
-10. Open Spyder's Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
+10. Open the Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
 
-11. Now, try plotting the same columns using only the data from 2006.
+11. Now, try plotting the temperature versus the date using only the data from 2006.
 
-12. Plot `temperature_c` and `humidity` versus the `date` in the same plot to examine how both variables change over the years:
+12. Plot temperature and humidity versus the date in the same plot to examine how both variables change over time:
 
 ```python
 weather_data_ordered.plot(
@@ -124,7 +124,7 @@ weather_data_ordered.plot(
 ## Data Summarization and Aggregation
 
 The previous plots contained a lot of data, which make it difficult to understand the evolution of our variables through time.
-For this reason, we can group the information we have by year and plot just the yearly values.
+For this reason, one of the things that we can do is group the information we have by year and plot the yearly values.
 To do this, we have written a function in the `utils.py` file, in the same folder as your workshop, that creates a new column in the DataFrame containing the year, and then groups values by year, computing the average of the variables for each one.
 
 14. Import the function from the `utils` module, so you can use it in your script:
@@ -133,14 +133,14 @@ To do this, we have written a function in the `utils.py` file, in the same folde
 from utils import aggregate_by_year
 ```
 
-15. Then, use it to aggregate by year and plot the data:
+15. Use it to aggregate by year and plot the data:
 
 ```python
 weather_data_by_year = aggregate_by_year(
     weather_data_ordered, 'date')
 ```
 
-16. Try writing your own function in the `utils.py` file that get the averages of the weather data by month and plots it.
+16. Try writing a function in the `utils.py` file that gets the averages of the weather data by month and plots them.
 
 
 ## Data Analysis and Interpretation
@@ -160,7 +160,7 @@ from utils import aggregate_by_year, plot_correlations
 plot_correlations(weather_data_ordered, size=15)
 ```
 
-Like before, you can open the Plots pane to view the correlations plot.
+Like before, open the Plots pane to view the correlations plot.
 
 19. Import the `plot_color_gradients()` function, which will help you plot the colormap gradient to be able to interpret your correlation plot:
 
@@ -183,7 +183,7 @@ weather_correlations = weather_data_ordered.corr()
 
 22. Open the variable `weather_correlations` in the Variable Explorer to see the results.
 
-23. Get just the correlation between humidity and temperature:
+23. Print the correlation between humidity and temperature in the IPython Console:
 
 ```python
 weather_data_ordered['temperature_c'].corr(weather_data_ordered['humidity'])
@@ -201,7 +201,7 @@ In our previous section, we realized that humidity and temperature are two of th
 
 We are going to use Scikit-Learn, which is a Python package that contains tools to explore data and build different types of predictive models.
 
-25. We first must import the necessary objects for our data modeling:
+25. Import the two necessary objects for our data modeling:
 
 ```python
 from sklearn import linear_model
@@ -227,7 +227,7 @@ regression = linear_model.LinearRegression()
 regression.fit(x_train.values.reshape(-1, 1), y_train.values.reshape(-1, 1))
 ```
 
-28. Place the text cursor over `LinearRegression()` and press the `Inspect` shortcut (`Ctrl+I` by default on Windows/Linux, or `Cmd-I` on macOS) to get the documentation of this function in Spyder's Help Pane.
+28. Place the text cursor over `LinearRegression()` and press the `Inspect` shortcut (`Ctrl+I` by default on Windows/Linux, or `Cmd-I` on macOS) to get the documentation of this function in the Help Pane.
 
 29. Print the coefficients of our regression:
 
@@ -240,7 +240,7 @@ Note that this means our model is a linear function `$$y = beta_0 + beta_1 \time
 
 ## Predictive Model Testing and Evaluation
 
-30. Now, we want to plot our model predictions versus our test data to see how good our prediction was:
+30. Now, we want to plot our model predictions versus our test data, to see how good our predictions were:
 
 ```python
 y_predict = regression.predict(x_test.values.reshape(-1, 1))
@@ -254,17 +254,17 @@ plt.show()
 
 31. Using the `.predict()` method of our model, predict the temperature for a given level of humidity.
 
-32. Finally, we want to numerically evaluate how good our model predictions were.
+32. Finally, we can numerically evaluate how good our model predictions were.
 For this, we will use `explained_variance_score` available in `sklearn.metrics`.
 This metric is calculated as `$$1-(Var(Y_real-Y_model)/Var(Y_real))$$`, which means that the closer the value is to 1, the better our model.
 
-We first need to import the evaluation function:
+We need to import the function that evaluates our model:
 
 ```python
 from sklearn.metrics import explained_variance_score
 ```
 
-33. Finally, calculate the explained variance score and print it:
+33. Calculate the explained variance score and print it:
 
 ```python
 print(explained_variance_score(y_test, y_predict))
