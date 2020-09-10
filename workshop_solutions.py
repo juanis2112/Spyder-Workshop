@@ -4,7 +4,7 @@
 # pylint: disable=invalid-name, fixme
 
 
-# %% [1] Import Packages and Data
+# %% [1] Importing Libraries and Data
 
 # Third-party imports
 import matplotlib.pyplot as plt
@@ -17,19 +17,19 @@ from sklearn.model_selection import train_test_split
 from utils import aggregate_by_year, plot_correlations, plot_color_gradients
 
 
-# %% [2] Explore the Data
+# %% [2] Exploring the Data
 
-# Read data
+# Reading data
 weather_data = pd.read_csv('data/weatherHistory.csv')
 
 # Print length of data
-print(len(weather_data))
+len(weather_data)
 
 # Print first three rows of DataFrame
-print(weather_data.head(3))
+weather_data.head(3)
 
 # TO DO: Print the last three rows of the DataFrame
-print(weather_data.tail(3))
+weather_data.tail(3)
 
 
 # %% [3] Visualization
@@ -120,4 +120,4 @@ plt.show()
 # TODO: Using the model, predict the temperature for a given level of humidity
 
 # Evaluate model numerically
-print(explained_variance_score(y_test, y_predict))
+explained_variance_score(y_test, y_predict)
