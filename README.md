@@ -76,18 +76,19 @@ Use the Variable Explorer to verify that our data is not ordered by default.
 7. Parse the date and create a new DataFrame with our data ordered by it:
 
 ```python
-weather_data['date'] = pd.to_datetime(weather_data['date'])
-weather_data_ordered = weather_data.sort_values(by='date')
+weather_data['Formatted Date'] = pd.to_datetime(
+    weather_data['Formatted Date'].str[:-6])
+weather_data_ordered = weather_data.sort_values(by='Formatted Date')
 ```
 
 8. In the Variable Explorer, right-click the old DataFrame `weather_data` to pop out the context menu and select `Remove` to delete it.
 Now, we are going to work with our new variable `weather_data_ordered`.
 
 Notice in the Variable Explorer that the DataFrame's index (the `Index` column on the left) is not in the order of the date.
-Reset the index so its order matches that of `date`:
+Reset the index so its order matches that of `Formatted Date`:
 
 ```python
-weather_data_ordered.reset_index(drop=True, inplace=True)
+weather_data_ordered.reset_index(drop=True)
 ```
 
 We also see that there are some qualitative variables, which can make our analysis more difficult.
@@ -95,15 +96,14 @@ For this reason, we want to stick to the columns that give us numerical informat
 
 ```python
 weather_data_ordered.drop(
-    columns=['summary', 'precip_type', 'cloud_cover', 'daily_summary'],
-    inplace=True)
+    columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
 ```
 
 9. Plot the temperature versus the date to see how temperature changes over time:
 
 ```python
 weather_data_ordered.plot(
-    x='date', y='temperature_c', color='red', figsize=(15, 8))
+    x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
 ```
 
 10. Open the Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
@@ -114,7 +114,7 @@ weather_data_ordered.plot(
 
 ```python
 weather_data_ordered.plot(
-    subplots=True, x='date', y=['temperature_c', 'humidity'],
+    subplots=True, x='Formatted Date', y=['Temperature (C)', 'Humidity'],
     figsize=(15, 8))
 ```
 
@@ -137,7 +137,7 @@ from utils import aggregate_by_year
 
 ```python
 weather_data_by_year = aggregate_by_year(
-    weather_data_ordered, 'date')
+    weather_data_ordered, date_column='Formatted Date')
 ```
 
 16. Try writing a function in the `utils.py` file that gets the averages of the weather data by month and plots them.
@@ -186,7 +186,7 @@ weather_correlations = weather_data_ordered.corr()
 23. Print the correlation between humidity and temperature in the IPython Console:
 
 ```python
-weather_data_ordered['temperature_c'].corr(weather_data_ordered['humidity'])
+weather_data_ordered['Temperature (C)'].corr(weather_data_ordered['Humidity'])
 ```
 
 Verify it has the same value as in the `weather_correlations` DataFrame.
@@ -215,7 +215,7 @@ Scikit-Learn contains a built-in function to split your data:
 
 ```python
 x_train, x_test, y_train, y_test = train_test_split(
-    weather_data_ordered['humidity'], weather_data_ordered['temperature_c'],
+    weather_data_ordered['Humidity'], weather_data_ordered['Temperature (C)'],
     test_size=0.25)
 ```
 
@@ -246,8 +246,8 @@ Note that this means our model is a linear function `$$y = beta_0 + beta_1 \time
 y_predict = regression.predict(x_test.values.reshape(-1, 1))
 plt.scatter(x_test, y_test, c='red', label='Observation', s=1)
 plt.scatter(x_test, y_predict, c='blue', label='model')
-plt.xlabel('humidity')
-plt.ylabel('temperature_c')
+plt.xlabel('Humidity')
+plt.ylabel('Temperature (C)')
 plt.legend()
 plt.show()
 ```
