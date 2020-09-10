@@ -5,16 +5,16 @@
 """Workshop main flow."""
 
 
-# %% [1] Import Packages and Data
+# %% [1] Importing Libraries and Data
 
 # Third-party imports
 
 # Local imports
 
 
-# %% [2] Explore the Data
+# %% [2] Exploring the Data
 
-# Read data
+# Reading data
 
 # Print length of data
 

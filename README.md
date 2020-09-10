@@ -1,35 +1,34 @@
 # Spyder Workshop
 
 The main goal of this workshop is to explore some of the Spyder IDE's core functionality for scientific programming.
-We will work on data visualization, analysis and prediction using Python packages like Pandas, Matplotlib and Scikit-learn over a dataset of historical weather observations from 2006 to 2016.
+We will work on data visualization, analysis and prediction using Python libraries like Pandas, Matplotlib and Scikit-learn over a dataset of historical weather observations from 2006 to 2016.
 
 
 ## Prerequisites
 
-To follow along with this workshop, you will need to have [Spyder](https://www.spyder-ide.org) installed in a Python environment that contains at least the Numpy, Matplotlib, Pandas and Scikit-Learn packages.
-We recommend you [download the Anaconda Python distribution](https://www.anaconda.com/products/individual) which contains all these packages and more all in one easy-to-install place.
-
-You will also need to [download Git](https://git-scm.com/downloads), the popular version control tool, to work with the contents of this repository.
+To start with this workshop, you will need to have [Spyder](https://www.spyder-ide.org) installed in a Python 3 environment that contains at least the Numpy, Matplotlib, Pandas and Scikit-Learn libraries.
+We recommend that you download and install the [Anaconda Python distribution](https://www.anaconda.com/products/individual), which contains all these libraries and more in a single place.
 
 
 ## Project Set-Up
 
-0. From the command line, clone the [Spyder-Workshop repository](https://github.com/juanis2112/Spyder-Workshop) with git:
+0. If you are familiar with git, clone the [Spyder-Workshop repository](https://github.com/juanis2112/Spyder-Workshop):
 
 ```bash
 git clone https://github.com/juanis2112/Spyder-Workshop
 ```
 
-Then, launch Spyder (via the start menu shortcut on Windows, or from Anaconda Navigator or `spyder` on the command line with Mac or Linux).
-Open the cloned folder in Spyder as a project by clicking `Open Project` in the `Project` menu, and navigating to the `Spyder-Workshop` directory you cloned.
-Finally, open the file `workshop.py` by double-clicking it in the `Project Explorer` pane to the left of the Spyder main window.
+Otherwise, you can download the contents of the workshop [here](https://github.com/juanis2112/Spyder-Workshop/archive/master.zip).  
+Then, launch Spyder via the start menu shortcut on Windows, or from Anaconda Navigator on Linux or Mac.
+Open the Workshop in Spyder as a project by clicking `Open Project` in the `Project` menu, and navigating to the `Spyder-Workshop` directory.
+Finally, open the file `workshop.py` by double-clicking it in the `Project Explorer` pane on the left of the Spyder main window.
 
 
-## Import Packages and Data
+## Importing Libraries and Data
 
-The first thing we need to do before starting our work is import the packages necessary for our analysis, and load the data in a way that it is easy to explore.
+The first thing we need to do before starting our work is import the libraries necessary for our analysis, and load the data in a way that it is easy to explore.
 
-1. Import the packages Matplotlib and Pandas:
+1. Import the libraries Matplotlib and Pandas:
 
 ```python
 import matplotlib.pyplot as plt
@@ -43,23 +42,23 @@ weather_data = pd.read_csv('data/weatherHistory.csv')
 ```
 
 
-## Explore the Data
+## Exploring the Data
 
-Now that we have our data and packages ready, let's start by taking a look at the data that we have.
+Now that we have our data and libraries ready, let's start by taking a look at the data that we have.
 
-3. Open the `weather_data` variable in Spyder's Variable Explorer pane by double-clicking its name.
+3. Open the `weather_data` variable in the Variable Explorer pane by double-clicking its name.
 The Variable Explorer is located in the top-right of the Spyder main window; you may need to click its tab to make it visible.
 
-4. Verify that the `Size` of `weather_data` in the Variable Explorer corresponds to the result of the `len()` function on your DataFrame:
+4. Verify that the `Size` of `weather_data` in the Variable Explorer corresponds to the result of `len(weather_data)` in the IPython Console.
 
 ```python
-print(len(weather_data))
+len(weather_data)
 ```
 
 5. Print the first three rows of the DataFrame to the IPython Console:
 
 ```python
-print(weather_data.head(3))
+weather_data.head(3)
 ```
 
 6. Now, try printing the last three rows of the DataFrame.
@@ -99,14 +98,14 @@ weather_data_ordered.drop(
     columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
 ```
 
-9. Plot the temperature versus the date to see how temperature changes over time:
+9. Plot `Temperature (C)` versus `Formatted Date` to see how temperature changes over time:
 
 ```python
 weather_data_ordered.plot(
     x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
 ```
 
-10. Open the Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
+10. Switch to the Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
 
 11. Now, try plotting the temperature versus the date using only the data from 2006.
 
@@ -154,13 +153,12 @@ For this, we have written another function in `utils.py`.
 from utils import aggregate_by_year, plot_correlations
 ```
 
-18. Plot the correlations between the variables:
+18. Plot the correlations between the variables and view the figure in the plots pane:
 
 ```python
 plot_correlations(weather_data_ordered, size=15)
 ```
 
-Like before, open the Plots pane to view the correlations plot.
 
 19. Import the `plot_color_gradients()` function, which will help you plot the colormap gradient to be able to interpret your correlation plot:
 
@@ -199,7 +197,7 @@ Verify it has the same value as in the `weather_correlations` DataFrame.
 Finally, we want to use our data to construct a model that allows us to predict values for some of our variables.
 In our previous section, we realized that humidity and temperature are two of the most correlated variables, so we are going to use these two first.
 
-We are going to use Scikit-Learn, which is a Python package that contains tools to explore data and build different types of predictive models.
+We are going to use Scikit-Learn, which is a Python library that contains tools to explore data and build different types of predictive models.
 
 25. Import the two necessary objects for our data modeling:
 
@@ -267,5 +265,5 @@ from sklearn.metrics import explained_variance_score
 33. Calculate the explained variance score and print it:
 
 ```python
-print(explained_variance_score(y_test, y_predict))
+explained_variance_score(y_test, y_predict)
 ```
