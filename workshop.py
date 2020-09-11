@@ -14,7 +14,7 @@
 
 # %% [2] Exploring the Data
 
-# Reading data
+# Load the data
 
 # Print length of data
 
