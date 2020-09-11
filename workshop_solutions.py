@@ -19,7 +19,7 @@ from utils import aggregate_by_year, plot_correlations, plot_color_gradients
 
 # %% [2] Exploring the Data
 
-# Reading data
+# Read the data
 weather_data = pd.read_csv('data/weatherHistory.csv')
 
 # Print length of data
