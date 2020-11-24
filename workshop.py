@@ -5,75 +5,75 @@
 """Workshop main flow."""
 
 
-# %% [1] Importing Libraries and Data
+# %% [1] Importación de librerías y datos
 
-# Third-party imports
+# Importaciones de terceros
 
-# Local imports
-
-
-# %% [2] Exploring the Data
-
-# Load the data
-
-# Print length of data
-
-# Print first three rows of DataFrame
-
-# TODO: Print last three rows of DataFrame
+# Importaciones locales
 
 
-# %% [3] Visualization
+# %% [2] Exploración de datos
 
-# Order rows according to date
+# Cargar los datos
 
-# Reset index to restore its order
+# Imprimir longitud de datos
 
-# Drop categorical columns
+# Imprimir las primeras tres filas del DataFrame
 
-# Plot temperature vs. date
-
-# TODO: Plot temperature vs date using only the data from 2006
-
-# -----------------------------------------------------------------------------
-
-# Plot temperature and humidity in the same plot
-
-# TODO: Plot different combinations of the variables, and for different years
+# TODO: Imprime las últimas tres filas de DataFrame
 
 
-# %% [4] Data summarization and aggregation
+# %% [3] Visualización
 
-# Weather data by year
+# Ordenar filas según fecha
 
-# TODO: Create and use a function to average the weather data by month
+# Restablecer índice para restaurar su orden
 
+# Eliminar columnas categóricas
 
-# %% [5] Data Analysis and Interpretation
+# Trazar temperatura vs. fecha
 
-# Plot correlations
+# TODO: Trace la temperatura frente a la fecha usando solo los datos de 2006
 
-# Plot gradient colormaps
+# ------------------------------------------------- ----------------------------
 
-# Compute correlations
+# Trazar temperatura y humedad en la misma parcela
 
-# TODO: Get the correlation for different combinations of variables.
-#       Contrast them with the weather_correlations dataframe.
-
-
-# %% [6] Data Modeling and Prediction
-
-# Get data subsets for the model
-
-# Run regression
-
-# Print coefficients
+# TODO: Grafique diferentes combinaciones de las variables y para diferentes años
 
 
-# %% [7] Predictive Model Testing and Evaluation
+# %% [4] Resumen y agregación de datos
 
-# Plot predicted model with test data
+# Datos meteorológicos por año
 
-# TODO: Using the model, predict the temperature for a given level of humidity
+# TODO: crea y usa una función para promediar los datos meteorológicos por mes
 
-# Evaluate model numerically
+
+# %% [5] Análisis e interpretación de datos
+
+# Trazar correlaciones
+
+# Trazar mapas de color degradados
+
+# Calcular correlaciones
+
+# TODO: Obtenga la correlación para diferentes combinaciones de variables.
+# Compárelos con el marco de datos weather_correlations.
+
+
+# %% [6] Modelado y predicción de datos
+
+# Obtener subconjuntos de datos para el modelo
+
+# Ejecutar regresión
+
+# Imprimir coeficientes
+
+
+# %% [7] Prueba y evaluación de modelos predictivos
+
+# Trazar modelo predicho con datos de prueba
+
+# TODO: Usando el modelo, predecir la temperatura para un nivel dado de humedad
+
+# Evaluar el modelo numéricamente

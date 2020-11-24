@@ -4,85 +4,84 @@
 # pylint: disable=invalid-name, fixme
 
 
-# %% [1] Importing Libraries and Data
+# %% [1] Importación de librerías y datos
 
-# Third-party imports
+# Importaciones de terceros
 import matplotlib.pyplot as plt
 import pandas as pd
 from sklearn import linear_model
 from sklearn.metrics import explained_variance_score
 from sklearn.model_selection import train_test_split
 
-# Local imports
+# Importaciones locales
 from utils import aggregate_by_year, plot_correlations, plot_color_gradients
 
 
-# %% [2] Exploring the Data
+# %% [2] Exploración de datos
 
-# Read the data
+# Cargar los datos
 weather_data = pd.read_csv('data/weatherHistory.csv')
 
-# Print length of data
+# Imprimir longitud de datos
 len(weather_data)
 
-# Print first three rows of DataFrame
+# Imprimir las primeras tres filas del DataFrame
 weather_data.head(3)
 
-# TO DO: Print the last three rows of the DataFrame
+# TODO: Imprime las últimas tres filas de DataFrame
 weather_data.tail(3)
 
 
-# %% [3] Visualization
+# %% [3] Visualización
 
-# Order rows according to date
+# Ordenar filas según fecha
 weather_data = pd.read_csv('data/weatherHistory.csv')
 weather_data['Formatted Date'] = pd.to_datetime(
     weather_data['Formatted Date'].str[:-6])
 weather_data_ordered = weather_data.sort_values(by='Formatted Date')
 
-# Reset index to restore its order
+# Restablecer índice para restaurar su orden
 weather_data_ordered.reset_index(drop=True)
 
-# Drop categorical columns
+# Eliminar columnas categóricas
 weather_data_ordered.drop(
     columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
 
-# Plot temperature vs. date
+# Trazar temperatura vs. fecha
 weather_data_ordered.plot(
     x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
 
-# TODO: Plot temperature vs date using only the data from 2006
+# TODO: Trace la temperatura frente a la fecha usando solo los datos de 2006
 weather_data_ordered.loc[
     weather_data_ordered["Formatted Date"].dt.year == 2006, :].plot(
         x='Formatted Date', y='Temperature (C)', color='red')
 
-# Plot temperature and humidity in the same plot
+# Trazar temperatura y humedad en la misma parcela
 weather_data_ordered.plot(
     subplots=True, x='Formatted Date', y=['Temperature (C)', 'Humidity'],
     figsize=(15, 8))
 
-# TODO: Plot different combinations of the variables, and for different years
+# TODO: Grafique diferentes combinaciones de las variables y para diferentes años
 
 
-# %% [4] Data summarization and aggregation
+# %% [4] Resumen y agregación de datos
 
-# Weather data by year
+# Datos meteorológicos por año
 weather_data_by_year = aggregate_by_year(
     weather_data_ordered, date_column='Formatted Date')
 
-# TODO: Create and use a function to average the weather data by month
+# TODO: crea y usa una función para promediar los datos meteorológicos por mes
 
+# %% [5] Análisis e interpretación de datos
 
-# %% [5] Data Analysis and Interpretation
-
-# Plot correlations
+# Trazar correlaciones
 plot_correlations(weather_data_ordered, size=15)
 
-# Plot gradient colormaps
+# Trazar mapas de color degradados
 plot_color_gradients(
     cmap_category='Plot gradients convention', cmap_list=['viridis', ])
 
-# Compute correlations
+# Calcular correlaciones
 weather_correlations = weather_data_ordered.corr()
 weather_data_ordered['Temperature (C)'].corr(
     weather_data_ordered['Humidity'])
@@ -91,24 +90,24 @@ weather_data_ordered['Temperature (C)'].corr(
 #       Contrast them with the weather_correlations dataframe
 
 
-# %% [6] Data Modeling and Prediction
+# %% [6] Modelado y predicción de datos
 
-# Get data subsets for the model
+# Obtener subconjuntos de datos para el modelo
 x_train, x_test, y_train, y_test = train_test_split(
     weather_data_ordered['Humidity'], weather_data_ordered['Temperature (C)'],
     test_size=0.25)
 
-# Run regression
+# Ejecutar regresión
 regression = linear_model.LinearRegression()
 regression.fit(x_train.values.reshape(-1, 1), y_train.values.reshape(-1, 1))
 
-# Print coefficients
+# Imprimir coeficientes
 print(regression.intercept_, regression.coef_)  # beta_0, beta_1
 
 
-# %% [7] Predictive Model Testing and Evaluation
+# %% [7] Prueba y evaluación de modelos predictivos
 
-# Plot predicted model with test data
+# Trazar modelo predicho con datos de prueba
 y_predict = regression.predict(x_test.values.reshape(-1, 1))
 plt.scatter(x_test, y_test, c='red', label='Observation', s=1)
 plt.scatter(x_test, y_predict, c='blue', label='Model')
@@ -117,7 +116,7 @@ plt.ylabel('Temperature (C)')
 plt.legend()
 plt.show()
 
-# TODO: Using the model, predict the temperature for a given level of humidity
+# TODO: Usando el modelo, predecir la temperatura para un nivel dado de humedad
 
-# Evaluate model numerically
+# Evaluar el modelo numéricamente
 explained_variance_score(y_test, y_predict)

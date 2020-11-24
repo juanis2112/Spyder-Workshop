@@ -1,78 +1,78 @@
 # Spyder Workshop
 
-The main goal of this workshop is to explore some of the Spyder IDE's core functionality for scientific programming.
-We will work on data visualization, analysis and prediction using Python libraries like Pandas, Matplotlib and Scikit-learn over a dataset of historical weather observations from 2006 to 2016.
+El objetivo principal de este taller es explorar algunas de las funciones básicas de Spyder IDE para la programación científica.
+Trabajaremos en la visualización, el análisis y la predicción de datos utilizando librerías de Python como Pandas, Matplotlib y Scikit-learn sobre un conjunto de datos de observaciones meteorológicas históricas de 2006 a 2016.
 
 
-## Prerequisites
+## Prerequisitos
 
-To start with this workshop, you will need to have [Spyder](https://www.spyder-ide.org) installed in a Python 3 environment that contains at least the Numpy, Matplotlib, Pandas and Scikit-Learn libraries.
-We recommend that you download and install the [Anaconda Python distribution](https://www.anaconda.com/products/individual), which contains all these libraries and more in a single place.
+Para comenzar con este taller, necesitará tener [Spyder](https://www.spyder-ide.org) instalado en un ambiente de Python 3 que contenga al menos las librerías Numpy, Matplotlib, Pandas y Scikit-Learn.
+Le recomendamos que descargue e instale la [distribución de Python Anaconda](https://www.anaconda.com/products/individual), que contiene todas estas librerías y más en un solo lugar.
 
 
-## Project Set-Up
+## Configuración del proyecto
 
-0. If you are familiar with git, clone the [Spyder-Workshop repository](https://github.com/juanis2112/Spyder-Workshop):
+0. Si está familiarizado con git, clone el [repositorio de Spyder-Workshop](https://github.com/juanis2112/Spyder-Workshop):
 
 ```bash
 git clone https://github.com/juanis2112/Spyder-Workshop
 ```
 
-Otherwise, you can download the contents of the workshop [here](https://github.com/juanis2112/Spyder-Workshop/archive/master.zip).  
-Then, launch Spyder via the start menu shortcut on Windows, or from Anaconda Navigator on Linux or Mac.
-Open the Workshop in Spyder as a project by clicking `Open Project` in the `Project` menu, and navigating to the `Spyder-Workshop` directory.
-Finally, open the file `workshop.py` by double-clicking it in the `Project Explorer` pane on the left of the Spyder main window.
+De lo contrario, puede descargar el contenido del workshop [aquí](https://github.com/juanis2112/Spyder-Workshop/archive/master.zip).
+Luego, inicie Spyder a través del acceso directo del menú de inicio en Windows, o desde Anaconda Navigator en Linux o Mac.
+Abra el Workshop en Spyder como un proyecto haciendo clic en `Open Project` en el menú `Proyect` y navegando al directorio `Spyder-Workshop`.
+Finalmente, abra el archivo `workshop.py` haciendo doble clic en él en el panel `Project Explorer` a la izquierda de la ventana principal de Spyder.
 
 
-## Importing Libraries and Data
+## Importación de librerías y datos
 
-The first thing we need to do before starting our work is import the libraries necessary for our analysis, and load the data in a way that it is easy to explore.
+Lo primero que debemos hacer antes de comenzar nuestro trabajo es importar las librerías necesarias para nuestro análisis y cargar los datos de una manera que sea fácil de explorar.
 
-1. Import the libraries Matplotlib and Pandas:
+1. Importe las librerías Matplotlib and Pandas:
 
 ```python
 import matplotlib.pyplot as plt
 import pandas as pd
 ```
 
-2. Load the data from the CSV file to a Pandas DataFrame:
+2. Cargue los datos del archivo CSV a un Pandas DataFrame:
 
 ```python
 weather_data = pd.read_csv('data/weatherHistory.csv')
 ```
 
 
-## Exploring the Data
+## Exploración de datos
 
-Now that we have our data and libraries ready, let's start by taking a look at the data that we have.
+Ahora que tenemos nuestros datos y librerías listos, comencemos por echar un vistazo a los datos que tenemos.
 
-3. Open the `weather_data` variable in the Variable Explorer pane by double-clicking its name.
-The Variable Explorer is located in the top-right of the Spyder main window; you may need to click its tab to make it visible.
+3. Abra la variable `weather_data` en el panel del Explorador de variables haciendo doble clic en su nombre.
+El Explorador de variables se encuentra en la parte superior derecha de la ventana principal de Spyder; es posible que deba hacer clic en su pestaña para que sea visible.
 
-4. Verify that the `Size` of `weather_data` in the Variable Explorer corresponds to the result of `len(weather_data)` in the IPython Console.
+4. Verifique que el `Size` de `weather_data` en el Explorador de variables se corresponda con el resultado de `len(weather_data)` en la Consola IPython.
 
 ```python
 len(weather_data)
 ```
 
-5. Print the first three rows of the DataFrame to the IPython Console:
+5. Imprima las primeras tres filas del DataFrame en la Consola IPython:
 
 ```python
 weather_data.head(3)
 ```
 
-6. Now, try printing the last three rows of the DataFrame.
+6. Ahora, intente imprimir las últimas tres filas del DataFrame.
 
 
-## Visualization
+## Visualización
 
-A useful tool for exploring the data that we are going to work with is plotting it.
-This is easy to do using the pandas library, which we imported previously.
+Una herramienta útil para explorar los datos con los que vamos a trabajar es trazarlos.
+Esto es fácil de hacer usando la librería de pandas, que importamos previamente.
 
-The first thing we want to do before plotting our data is ordering the rows according to the date.
-Use the Variable Explorer to verify that our data is not ordered by default.
+Lo primero que queremos hacer antes de graficar nuestros datos es ordenar las filas según la fecha.
+Utilice el Explorador de variables para verificar que nuestros datos no estén ordenados de forma predeterminada.
 
-7. Parse the date and create a new DataFrame with our data ordered by it:
+7. Formateé la fecha y cree un nuevo DataFrame con nuestros datos ordenados por él
 
 ```python
 weather_data['Formatted Date'] = pd.to_datetime(
@@ -80,36 +80,36 @@ weather_data['Formatted Date'] = pd.to_datetime(
 weather_data_ordered = weather_data.sort_values(by='Formatted Date')
 ```
 
-8. In the Variable Explorer, right-click the old DataFrame `weather_data` to pop out the context menu and select `Remove` to delete it.
-Now, we are going to work with our new variable `weather_data_ordered`.
+8. En el Explorador de variables, haga clic con el botón derecho en el antiguo DataFrame `weather_data` para que aparezca el menú contextual y seleccione `Remove` para eliminarlo.
+Ahora, vamos a trabajar con nuestra nueva variable `weather_data_ordered`.
 
-Notice in the Variable Explorer that the DataFrame's index (the `Index` column on the left) is not in the order of the date.
-Reset the index so its order matches that of `Formatted Date`:
+Observe en el Explorador de variables que el índice del DataFrame (la columna `Index` a la izquierda) no está en el orden de la fecha.
+Restablezca el índice para que su orden coincida con el de `Formatted Date`:
 
 ```python
 weather_data_ordered.reset_index(drop=True)
 ```
 
-We also see that there are some qualitative variables, which can make our analysis more difficult.
-For this reason, we want to stick to the columns that give us numerical information and drop the categorical ones:
+También vemos que existen algunas variables cualitativas que pueden dificultar nuestro análisis.
+Por esta razón, queremos ceñirnos a las columnas que nos dan información numérica y descartar las categóricas:
 
 ```python
 weather_data_ordered.drop(
     columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
 ```
 
-9. Plot `Temperature (C)` versus `Formatted Date` to see how temperature changes over time:
+9. Grafique `Temperature (C)` versus `Formatted Date` para ver cómo cambia la temperatura con el tiempo:
 
 ```python
 weather_data_ordered.plot(
     x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
 ```
 
-10. Switch to the Plots pane, in the same top-right section of the interface as the Variable Explorer, to view your figure.
+10. Cambie al panel de Plots, en la misma sección superior derecha de la interfaz que el Explorador de variables, para ver su figura.
 
-11. Now, try plotting the temperature versus the date using only the data from 2006.
+11. Ahora, intente graficar la temperatura frente a la fecha utilizando solo los datos de 2006.
 
-12. Plot temperature and humidity versus the date in the same plot to examine how both variables change over time:
+12. Grafique la temperatura y la humedad frente a la fecha en el mismo gráfico para examinar cómo cambian ambas variables con el tiempo:
 
 ```python
 weather_data_ordered.plot(
@@ -117,99 +117,99 @@ weather_data_ordered.plot(
     figsize=(15, 8))
 ```
 
-13. Now, try plotting different variables in the same plot for different years.
+13. Ahora, intente graficar diferentes variables en la misma gráfica para diferentes años.
 
 
-## Data Summarization and Aggregation
+## Resumen y agregación de datos
 
-The previous plots contained a lot of data, which make it difficult to understand the evolution of our variables through time.
-For this reason, one of the things that we can do is group the information we have by year and plot the yearly values.
-To do this, we have written a function in the `utils.py` file, in the same folder as your workshop, that creates a new column in the DataFrame containing the year, and then groups values by year, computing the average of the variables for each one.
+Los gráficos anteriores contenían una gran cantidad de datos, lo que dificulta la comprensión de la evolución de nuestras variables a lo largo del tiempo.
+Por esta razón, una de las cosas que podemos hacer es agrupar la información que tenemos por año y graficar los valores anuales.
+Para hacer esto, hemos escrito una función en el archivo `utils.py`, en la misma carpeta que su taller, que crea una nueva columna en el DataFrame que contiene el año, y luego agrupa los valores por año, calculando el promedio del variables para cada uno.
 
-14. Import the function from the `utils` module, so you can use it in your script:
+14. Importe la función del módulo `utils`, para que pueda usarla en su script:
 
 ```python
 from utils import aggregate_by_year
 ```
 
-15. Use it to aggregate by year and plot the data:
+15. Úselo para agregar por año y graficar los datos:
 
 ```python
 weather_data_by_year = aggregate_by_year(
     weather_data_ordered, date_column='Formatted Date')
 ```
 
-16. Try writing a function in the `utils.py` file that gets the averages of the weather data by month and plots them.
+16. Intente escribir una función en el archivo `utils.py` que obtenga los promedios de los datos meteorológicos por mes y los grafique.
 
 
-## Data Analysis and Interpretation
+## Análisis e interpretación de datos
 
-Now, we want to evaluate the relationships between the variables in our data set.
-For this, we have written another function in `utils.py`.
+Ahora, queremos evaluar las relaciones entre las variables en nuestro conjunto de datos.
+Para ello, hemos escrito otra función en `utils.py`.
 
-17. Import the new function:
+17. Importar la nueva función:
 
 ```python
 from utils import aggregate_by_year, plot_correlations
 ```
 
-18. Plot the correlations between the variables and view the figure in the plots pane:
+18. Grafique las correlaciones entre las variables y vea la figura en el panel de gráficos:
 
 ```python
 plot_correlations(weather_data_ordered, size=15)
 ```
 
 
-19. Import the `plot_color_gradients()` function, which will help you plot the colormap gradient to be able to interpret your correlation plot:
+19. Importe la función `plot_color_gradients()`, que le ayudará a trazar el gradiente del mapa de colores para poder interpretar su diagrama de correlación:
 
 ```python
 from utils import aggregate_by_year, plot_correlations, plot_color_gradients
 ```
 
-20. Plot the colormap gradient using the function you imported:
+20. Grafique el gradiente del mapa de colores con la función que importó:
 
 ```python
 plot_color_gradients(
     cmap_category='Plot gradients convention', cmap_list=['viridis', ])
 ```
 
-21. Calculate the Pearson correlations between the different variables in our data set:
+21. Calcule las correlaciones de Pearson entre las diferentes variables de nuestro conjunto de datos:
 
 ```python
 weather_correlations = weather_data_ordered.corr()
 ```
 
-22. Open the variable `weather_correlations` in the Variable Explorer to see the results.
+22. Abra la variable `weather_correlations` en el Explorador de variables para ver los resultados.
 
-23. Print the correlation between humidity and temperature in the IPython Console:
+23. Imprima la correlación entre la humedad y la temperatura en la consola de IPython:
 
 ```python
 weather_data_ordered['Temperature (C)'].corr(weather_data_ordered['Humidity'])
 ```
 
-Verify it has the same value as in the `weather_correlations` DataFrame.
+Verifique que tenga el mismo valor que en el DataFrame `weather_correlations`.
 
-24. Try calculating correlations between different variables and comparing them with the ones in the DataFrame.
+24. Intente calcular correlaciones entre diferentes variables y compararlas con las del DataFrame.
 
 
-## Data Modeling and Prediction
+## Modelado y predicción de datos
 
-Finally, we want to use our data to construct a model that allows us to predict values for some of our variables.
-In our previous section, we realized that humidity and temperature are two of the most correlated variables, so we are going to use these two first.
+Finalmente, queremos usar nuestros datos para construir un modelo que nos permita predecir valores para algunas de nuestras variables.
+En nuestra sección anterior, nos dimos cuenta de que la humedad y la temperatura son dos de las variables más correlacionadas, por lo que vamos a utilizar estas dos primero.
 
-We are going to use Scikit-Learn, which is a Python library that contains tools to explore data and build different types of predictive models.
+Vamos a utilizar Scikit-Learn, que es una librería de Python que contiene herramientas para explorar datos y construir diferentes tipos de modelos predictivos.
 
-25. Import the two necessary objects for our data modeling:
+25. Importa los dos objetos necesarios para nuestro modelado de datos:
 
 ```python
 from sklearn import linear_model
 from sklearn.model_selection import train_test_split
 ```
 
-26. A classic way to make a predictive model is to subdivide the data into two sets: training and test.
-The training data will help us to fit our predictive model, while the test data will play the role of future observations and give us an idea of how good our predictions are.
+26. Una forma clásica de hacer un modelo predictivo es subdividir los datos en dos conjuntos: entrenamiento y prueba.
+Los datos de entrenamiento nos ayudarán a ajustar nuestro modelo predictivo, mientras que los datos de prueba jugarán el papel de observaciones futuras y nos darán una idea de cuán buenas son nuestras predicciones.
 
-Scikit-Learn contains a built-in function to split your data:
+Scikit-Learn contiene una función incorporada para dividir sus datos:
 
 ```python
 x_train, x_test, y_train, y_test = train_test_split(
@@ -217,28 +217,28 @@ x_train, x_test, y_train, y_test = train_test_split(
     test_size=0.25)
 ```
 
-27. We will use linear regression in Scikit-Learn to make a linear model of our data.
-Create the model, then fit it with the weather data:
+27. Usaremos la regresión lineal en Scikit-Learn para hacer un modelo lineal de nuestros datos.
+Cree el modelo, luego ajústelo con los datos meteorológicos:
 
 ```python
 regression = linear_model.LinearRegression()
 regression.fit(x_train.values.reshape(-1, 1), y_train.values.reshape(-1, 1))
 ```
 
-28. Place the text cursor over `LinearRegression()` and press the `Inspect` shortcut (`Ctrl+I` by default on Windows/Linux, or `Cmd-I` on macOS) to get the documentation of this function in the Help Pane.
+28. Coloque el cursor de texto sobre `LinearRegression()` y presione el acceso directo `Inspect` (`Ctrl+I` por defecto en Windows/Linux, o `Cmd-I` en macOS) para obtener la documentación de esta función en el Panel de ayuda .
 
-29. Print the coefficients of our regression:
+29. Imprime los coeficientes de nuestra regresión:
 
 ```python
 print(regression.intercept_, regression.coef_)  # beta_0, beta_1
 ```
 
-Note that this means our model is a linear function `$$y = beta_0 + beta_1 \times x$$`, where temperature is a function of humidity.
+Tenga en cuenta que esto significa que nuestro modelo es una función lineal `$$y = beta_0 + beta_1 \times x$$`, donde la temperatura es una función de la humedad.
 
 
-## Predictive Model Testing and Evaluation
+## Prueba y evaluación de modelos predictivos
 
-30. Now, we want to plot our model predictions versus our test data, to see how good our predictions were:
+30. Ahora, queremos trazar las predicciones de nuestro modelo frente a nuestros datos de prueba, para ver qué tan buenas fueron nuestras predicciones:
 
 ```python
 y_predict = regression.predict(x_test.values.reshape(-1, 1))
@@ -250,19 +250,19 @@ plt.legend()
 plt.show()
 ```
 
-31. Using the `.predict()` method of our model, predict the temperature for a given level of humidity.
+31. Usando el método `.predict()` de nuestro modelo, prediga la temperatura para un nivel dado de humedad.
 
-32. Finally, we can numerically evaluate how good our model predictions were.
-For this, we will use `explained_variance_score` available in `sklearn.metrics`.
-This metric is calculated as `$$1-(Var(Y_real-Y_model)/Var(Y_real))$$`, which means that the closer the value is to 1, the better our model.
+32. Por último, podemos evaluar numéricamente qué tan buenas fueron las predicciones de nuestro modelo.
+Para esto, usaremos el `valor_explicado_varianza` disponible en `sklearn.metrics`.
+Esta métrica se calcula como `$$1-(Var(Y_real-Y_model)/Var(Y_real))$$`, lo que significa que cuanto más cerca esté el valor de 1, mejor será nuestro modelo.
 
-We need to import the function that evaluates our model:
+Necesitamos importar la función que evalúa nuestro modelo:
 
 ```python
 from sklearn.metrics import explained_variance_score
 ```
 
-33. Calculate the explained variance score and print it:
+33. Calcule la puntuación de varianza explicada e imprímala:
 
 ```python
 explained_variance_score(y_test, y_predict)
