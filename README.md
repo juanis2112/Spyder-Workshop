@@ -87,14 +87,14 @@ Observe en el Explorador de variables que el índice del DataFrame (la columna `
 Restablezca el índice para que su orden coincida con el de `Formatted Date`:
 
 ```python
-weather_data_ordered.reset_index(drop=True)
+weather_data_ordered = weather_data_ordered.reset_index(drop=True)
 ```
 
 También vemos que existen algunas variables cualitativas que pueden dificultar nuestro análisis.
 Por esta razón, queremos ceñirnos a las columnas que nos dan información numérica y descartar las categóricas:
 
 ```python
-weather_data_ordered.drop(
+weather_data_ordered = weather_data_ordered.drop(
     columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
 ```
 
@@ -156,7 +156,7 @@ from utils import aggregate_by_year, plot_correlations
 18. Grafique las correlaciones entre las variables y vea la figura en el panel de gráficos:
 
 ```python
-plot_correlations(weather_data_ordered, size=15)
+plot_correlations(weather_data_ordered, size=18)
 ```
 
 
