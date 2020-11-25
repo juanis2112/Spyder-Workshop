@@ -20,8 +20,8 @@ git clone https://github.com/juanis2112/Spyder-Workshop
 
 De lo contrario, puede descargar el contenido del workshop [aquí](https://github.com/juanis2112/Spyder-Workshop/archive/master.zip).
 Luego, inicie Spyder a través del acceso directo del menú de inicio en Windows, o desde Anaconda Navigator en Linux o Mac.
-Abra el Workshop en Spyder como un proyecto haciendo clic en `Open Project` en el menú `Project` y navegando al directorio `Spyder-Workshop`.
-Finalmente, abra el archivo `workshop.py` haciendo doble clic en él en el panel `Project Explorer` a la izquierda de la ventana principal de Spyder.
+Abra el Workshop en Spyder como un proyecto haciendo clic en `Abrir proyecto` en el menú `Proyecto` y navegando al directorio `Spyder-Workshop`.
+Finalmente, abra el archivo `workshop.py` haciendo doble clic en él en el panel `Proyecto` a la izquierda de la ventana principal de Spyder.
 
 
 ## Importación de librerías y datos
@@ -72,7 +72,7 @@ Esto es fácil de hacer usando la librería de pandas, que importamos previament
 Lo primero que queremos hacer antes de graficar nuestros datos es ordenar las filas según la fecha.
 Utilice el Explorador de variables para verificar que nuestros datos no están ordenados de forma predeterminada.
 
-7. Formateé la fecha y cree un nuevo DataFrame con nuestros datos ordenados por el mismo
+7. Formatee la fecha y cree un nuevo DataFrame con nuestros datos ordenados por el mismo
 
 ```python
 weather_data['Formatted Date'] = pd.to_datetime(
@@ -80,10 +80,10 @@ weather_data['Formatted Date'] = pd.to_datetime(
 weather_data_ordered = weather_data.sort_values(by='Formatted Date')
 ```
 
-8. En el Explorador de variables, haga clic con el botón derecho en el antiguo DataFrame `weather_data` para que aparezca el menú contextual y seleccione `Remove` para eliminarlo.
+8. En el Explorador de variables, haga clic con el botón derecho en el antiguo DataFrame `weather_data` para que aparezca el menú contextual y seleccione `Eliminar` para eliminarlo.
 Ahora, vamos a trabajar con nuestra nueva variable `weather_data_ordered`.
 
-Observe en el Explorador de variables que el índice del DataFrame (la columna `Index` a la izquierda) no está en el orden de la fecha.
+Observe en el Explorador de variables que el índice del DataFrame (la columna `Índice` a la izquierda) no está en el orden de la fecha.
 Restablezca el índice para que su orden coincida con el de `Formatted Date`:
 
 ```python
@@ -105,7 +105,7 @@ weather_data_ordered.plot(
     x='Formatted Date', y='Temperature (C)', color='red', figsize=(15, 8))
 ```
 
-10. Cambie al panel de Plots (Gráficos), en la misma sección superior derecha de la interfaz que el Explorador de variables, para ver su figura.
+10. Cambie al panel de Gráficos (Plots), en la misma sección superior derecha de la interfaz que el Explorador de variables, para ver su figura.
 
 11. Ahora, intente graficar la temperatura versus la fecha utilizando solo los datos de 2006.
 
