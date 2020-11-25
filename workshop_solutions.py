@@ -41,10 +41,10 @@ weather_data['Formatted Date'] = pd.to_datetime(
 weather_data_ordered = weather_data.sort_values(by='Formatted Date')
 
 # Restablecer índice para restaurar su orden
-weather_data_ordered.reset_index(drop=True)
+weather_data_ordered = weather_data_ordered.reset_index(drop=True)
 
 # Eliminar columnas categóricas
-weather_data_ordered.drop(
+weather_data_ordered = weather_data_ordered.drop(
     columns=['Summary', 'Precip Type', 'Loud Cover', 'Daily Summary'])
 
 # Trazar temperatura vs. fecha
@@ -75,7 +75,7 @@ weather_data_by_year = aggregate_by_year(
 # %% [5] Análisis e interpretación de datos
 
 # Trazar correlaciones
-plot_correlations(weather_data_ordered, size=15)
+plot_correlations(weather_data_ordered, size=18)
 
 # Trazar mapas de color degradados
 plot_color_gradients(

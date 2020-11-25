@@ -4,6 +4,8 @@
 # Licensed under the terms of the MIT License
 """Workshop main flow."""
 
+# pylint: disable=invalid-name, fixme
+
 
 # %% [1] Importación de librerías y datos
 
