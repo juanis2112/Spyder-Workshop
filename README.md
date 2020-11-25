@@ -72,7 +72,7 @@ Esto es fácil de hacer usando la librería de pandas, que importamos previament
 Lo primero que queremos hacer antes de graficar nuestros datos es ordenar las filas según la fecha.
 Utilice el Explorador de variables para verificar que nuestros datos no están ordenados de forma predeterminada.
 
-7. Formateé la fecha y cree un nuevo DataFrame con nuestros datos ordenados por el mismo
+7. Formatee la fecha y cree un nuevo DataFrame con nuestros datos ordenados por el mismo
 
 ```python
 weather_data['Formatted Date'] = pd.to_datetime(
