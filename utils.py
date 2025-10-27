@@ -25,7 +25,7 @@ def plot_correlations(df, size=10):
         Axes object of the generated plot.
 
     """
-    corr = df.corr()
+    corr = df.corr(numeric_only=True)
     fig, ax = plt.subplots(figsize=(size, size))
     ax.matshow(corr)
     ax.set(xticks=range(len(corr.columns)), xticklabels=corr.columns)
@@ -56,7 +56,7 @@ def aggregate_by_year(df, date_column, figsize=(15, 8)):
 
     """
     df['year'] = df[date_column].dt.year
-    df_yearly = df.groupby('year').mean()
+    df_yearly = df.groupby('year').mean(numeric_only=True)
     df_yearly.plot(subplots=True, figsize=figsize)
     return df_yearly
 

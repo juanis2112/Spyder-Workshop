@@ -83,7 +83,7 @@ plot_color_gradients(
     cmap_category='Plot gradients convention', cmap_list=['viridis', ])
 
 # Compute correlations
-weather_correlations = weather_data_ordered.corr()
+weather_correlations = weather_data_ordered.corr(numeric_only=True)
 weather_data_ordered['Temperature (C)'].corr(
     weather_data_ordered['Humidity'])
 
